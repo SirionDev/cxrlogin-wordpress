@@ -6,7 +6,7 @@ description: Integració amb el procés de validació de la Identitat Digital Re
 Version: 1.0
 Author: Sirion Developers
 Author URI: https://siriondev.com
-License: GPL2
+License: GPL-3.0
 */
 
 add_action('user_new_form', "show_cxr_idrepublicana" );
