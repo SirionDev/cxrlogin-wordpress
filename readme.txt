@@ -4,7 +4,7 @@ Donate link: https://consellrepublica.cat/
 Tags: identitat-digital-republicana, cxr, consellrepublica, consell, republica, identitat, digital, republicana
 Requires at least: 5.6
 Tested up to: 5.6
-Stable tag: trunk
+Stable tag: 1.0.3
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html

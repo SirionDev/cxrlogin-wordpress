@@ -3,7 +3,7 @@
 Plugin Name: Identitat Digital Republicana
 Plugin URI: https://siriondev.com
 description: Integració amb el procés de validació de la Identitat Digital Republicana del Consell per la República Catalana
-Version: 1.0.2
+Version: 1.0.3
 Author: Sirion Developers
 Author URI: https://siriondev.com
 License: GPL-3.0
