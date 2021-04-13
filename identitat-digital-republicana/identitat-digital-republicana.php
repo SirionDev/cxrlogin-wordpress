@@ -82,14 +82,15 @@ function validate_cxr_idrepublicana($errors, $update, $user)
 {
     if (!empty($_POST['cxr_idrepublicana'])) {
 
-        // Format: C-999-99999
         if (!preg_match("/[A-Za-z]{1}\-[0-9]{3}\-[0-9]{5}/", $_POST['cxr_idrepublicana'])) {
 
             $errors->add('cxr_idrepublicana', "<strong>Error</strong>: L'ID Republicana introduïda no és vàlida!! Si us plau, torna-ho a intentar.");
 
         } else {
 
-            $response = wp_remote_get('https://apis.consellrepublica.cat/idserv/validate?idCiutada=' . $_POST['cxr_idrepublicana']);
+            $idr = preg_replace('/[^a-z0-9\-]/i', '_', $_POST['cxr_idrepublicana']);
+
+            $response = wp_remote_get('https://apis.consellrepublica.cat/idserv/validate?idCiutada=' . $idr);
 
             $json = json_decode($response['body'], true);
 
@@ -101,7 +102,7 @@ function validate_cxr_idrepublicana($errors, $update, $user)
 
             $args = array(
         		'meta_key'     => 'cxr_idrepublicana',
-        		'meta_value'   => $_POST['cxr_idrepublicana'],
+        		'meta_value'   => $idr,
         		'meta_compare' => '=',
         		'exclude'      => array($user->ID)
         	);
