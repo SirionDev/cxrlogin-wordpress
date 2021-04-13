@@ -1,10 +1,11 @@
 # identitat-digital-republicana | Wordpress Plugin
+
 Plugin de Wordpress per a la integració amb el procés de validació de la Identitat Digital Republicana del Consell per la República Catalana
 
-## Features
+## Funcionalitats
 
 - Assignació de Identitat Digital Republicana als usuaris
-- Validació de la Identitat Digital Republicana
+- Validació de la Identitat Digital Republicana mitjançant el Consell per la República
 - Inici de sessió amb la Identitat Digital Republicana
 
 ## Imatges
@@ -13,10 +14,10 @@ Plugin de Wordpress per a la integració amb el procés de validació de la Iden
 
 <center>
 
-![Inici de sessió](assets/login.png)
+![Inici de sessió](assets/screenshot-1.png)
 
 <br>
 
-![Inici de sessió](assets/crear.png)
+![Configuració de l'ID Republicana](assets/screenshot-2.png)
 
 </center>
