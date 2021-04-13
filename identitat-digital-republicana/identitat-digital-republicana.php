@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: CxR | Identitat Digital Republicana
+Plugin Name: Identitat Digital Republicana
 Plugin URI: https://siriondev.com
 description: Integració amb el procés de validació de la Identitat Digital Republicana del Consell per la República Catalana
-Version: 1.0
+Version: 1.0.1
 Author: Sirion Developers
 Author URI: https://siriondev.com
 License: GPL-3.0
@@ -31,7 +31,9 @@ function show_cxr_idrepublicana($user)
 {
     $meta = $users = get_user_meta($user->id);
 
-    $cxr_idrepublicana = isset($meta['cxr_idrepublicana'][0]) ? $meta['cxr_idrepublicana'][0] : ''; ?>
+    $cxr_idrepublicana = isset($meta['cxr_idrepublicana'][0]) ? $meta['cxr_idrepublicana'][0] : '';
+
+    $cxr_idrepublicana = preg_replace('/[^a-z0-9\-]/i', '_', $cxr_idrepublicana); ?>
 
     <h3 class="heading">Consell per la República</h3>
 
@@ -61,7 +63,9 @@ function save_cxr_idrepublicana($user_id, $old_user_data)
 {
     if (current_user_can('edit_user', $user_id)) {
 
-        update_user_meta($user_id, 'cxr_idrepublicana', $_POST['cxr_idrepublicana']);
+        $idr = preg_replace('/[^a-z0-9\-]/i', '_', $_POST['cxr_idrepublicana']);
+
+        update_user_meta($user_id, 'cxr_idrepublicana', $idr);
     }
 }
 
@@ -78,31 +82,39 @@ function validate_cxr_idrepublicana($errors, $update, $user)
 {
     if (!empty($_POST['cxr_idrepublicana'])) {
 
-        $response = file_get_contents('https://apis.consellrepublica.cat/idserv/validate?idCiutada=' . $_POST['cxr_idrepublicana']);
+        // Format: C-999-9999
+        if (!preg_match("/[A-Za-z]{1}\-[0-9]{3}\-[0-9]{4}/", $_POST['cxr_idrepublicana'])) {
 
-        $json = json_decode($response, true);
+            $errors->add('cxr_idrepublicana', "<strong>Error</strong>: L'ID Republicana introduïda no és vàlida!! Si us plau, torna-ho a intentar.");
 
-        if ($json['state'] != 'VALID_ACTIVE') {
+        } else {
 
-            $errors->add('cxr_idrepublicana', "<strong>Error</strong>: L'ID Republicana introduïda no és vàlida. Si us plau, torna-ho a intentar.");
+            $response = wp_remote_get('https://apis.consellrepublica.cat/idserv/validate?idCiutada=' . $_POST['cxr_idrepublicana']);
 
-        }
+            $json = json_decode($response['body'], true);
 
-        $args = array(
-    		'meta_key'     => 'cxr_idrepublicana',
-    		'meta_value'   => $_POST['cxr_idrepublicana'],
-    		'meta_compare' => '=',
-    		'exclude'      => array($user->ID)
-    	);
+            if (!isset($json['state']) || $json['state'] != 'VALID_ACTIVE') {
 
-    	$user_query = new WP_User_Query($args);
+                $errors->add('cxr_idrepublicana', "<strong>Error</strong>: L'ID Republicana introduïda no és vàlida. Si us plau, torna-ho a intentar.");
 
-    	$users = $user_query->get_results();
+            }
 
-        if ($users) {
+            $args = array(
+        		'meta_key'     => 'cxr_idrepublicana',
+        		'meta_value'   => $_POST['cxr_idrepublicana'],
+        		'meta_compare' => '=',
+        		'exclude'      => array($user->ID)
+        	);
 
-            $errors->add('cxr_idrepublicana', "<strong>Error</strong>: L'ID Republicana introduïda ja està en ús. Si us plau, torna-ho a intentar.");
+        	$user_query = new WP_User_Query($args);
 
+        	$users = $user_query->get_results();
+
+            if ($users) {
+
+                $errors->add('cxr_idrepublicana', "<strong>Error</strong>: L'ID Republicana introduïda ja està en ús. Si us plau, torna-ho a intentar.");
+
+            }
         }
     }
 
