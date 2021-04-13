@@ -3,7 +3,7 @@
 Plugin Name: Identitat Digital Republicana
 Plugin URI: https://siriondev.com
 description: Integració amb el procés de validació de la Identitat Digital Republicana del Consell per la República Catalana
-Version: 1.0.1
+Version: 1.0.2
 Author: Sirion Developers
 Author URI: https://siriondev.com
 License: GPL-3.0
@@ -82,8 +82,8 @@ function validate_cxr_idrepublicana($errors, $update, $user)
 {
     if (!empty($_POST['cxr_idrepublicana'])) {
 
-        // Format: C-999-9999
-        if (!preg_match("/[A-Za-z]{1}\-[0-9]{3}\-[0-9]{4}/", $_POST['cxr_idrepublicana'])) {
+        // Format: C-999-99999
+        if (!preg_match("/[A-Za-z]{1}\-[0-9]{3}\-[0-9]{5}/", $_POST['cxr_idrepublicana'])) {
 
             $errors->add('cxr_idrepublicana', "<strong>Error</strong>: L'ID Republicana introduïda no és vàlida!! Si us plau, torna-ho a intentar.");
 
