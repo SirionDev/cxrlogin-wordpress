@@ -17,11 +17,11 @@ Plugin de WordPress per a afegir la **Identitat Digital Republicana** als usuari
 
 == Frequently Asked Questions ==
 
-= El **Consell per la República** valida les identitats introduïdes? =
+= El Consell per la República valida les identitats introduïdes? =
 
 Si. Totes les **identitats Digitals Republicanes** introduïdes són validades pel **Consell per la República**.
 
-= Poden dos usuaris tenir la mateixa **ID Republicana?** =
+= Poden dos usuaris tenir la mateixa ID Republicana? =
 
 No, les **ID Republicanes** hauran de ser úniques dins el lloc web.
 
