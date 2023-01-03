@@ -3,7 +3,7 @@ Contributors: siriondev, gerardforcada
 Donate link: https://consellrepublica.cat/
 Tags: identitat-digital-republicana, cxr, consellrepublica, consell, republica, identitat, digital, republicana
 Requires at least: 5.6
-Tested up to: 5.8
+Tested up to: 6.0.3
 Stable tag: 1.0.3
 Requires PHP: 7.4
 License: GPLv3 or later
