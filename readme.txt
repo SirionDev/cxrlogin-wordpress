@@ -3,13 +3,13 @@ Contributors: siriondev, gerardforcada
 Donate link: https://consellrepublica.cat/
 Tags: identitat-digital-republicana, cxr, consellrepublica, consell, republica, identitat, digital, republicana
 Requires at least: 5.6
-Tested up to: 6.0.3
-Stable tag: 1.0.3
+Tested up to: 6.2
+Stable tag: 1.2.0
 Requires PHP: 7.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Integració amb el procés de validació de la Identitat Digital Republicana del Consell per la República Catalana
+Integració amb el procés de validació de la Identitat Digital Republicana del Consell de la República Catalana
 
 == Description ==
 
@@ -19,7 +19,7 @@ Plugin de WordPress per a afegir la **Identitat Digital Republicana** als usuari
 
 = El Consell per la República valida les identitats introduïdes? =
 
-Si. Totes les **identitats Digitals Republicanes** introduïdes són validades pel **Consell per la República**.
+Si. Totes les **identitats Digitals Republicanes** introduïdes són validades pel **Consell de la República**.
 
 = Poden dos usuaris tenir la mateixa ID Republicana? =
 
