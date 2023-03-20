@@ -144,13 +144,13 @@ function cxr_idr_page()
  *
  * @return void
  */
-function cxr_idrepublicana_field(WP_User $user): void
+function cxr_idrepublicana_field(WP_User|string $user): void
 {
     $meta = null;
     
     if ($user != 'add-new-user') {
 
-        $meta = $users = get_user_meta($user->id);
+        $meta = get_user_meta($user->id);
     }
 
     $cxr_idrepublicana = isset($meta['cxr_idrepublicana'][0]) ? $meta['cxr_idrepublicana'][0] : '';
