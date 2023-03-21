@@ -183,11 +183,14 @@ function cxr_idrepublicana_field(WP_User|string $user): void
  */
 function save_cxr_idrepublicana(int $user_id, WP_User $old_user_data = null, array $new_user_data = null): void
 {
-    if (current_user_can('edit_user', $user_id)) {
+    if (isset($_POST['cxr_idrepublicana'])) {
 
-        $idr = preg_replace('/[^a-z0-9\-]/i', '_', $_POST['cxr_idrepublicana']);
+        if (current_user_can('edit_user', $user_id)) {
 
-        update_user_meta($user_id, 'cxr_idrepublicana', $idr);
+            $idr = preg_replace('/[^a-z0-9\-]/i', '_', $_POST['cxr_idrepublicana']);
+    
+            update_user_meta($user_id, 'cxr_idrepublicana', $idr);
+        }
     }
 }
 
